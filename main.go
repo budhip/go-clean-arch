@@ -13,6 +13,7 @@ import (
 	_ "github.com/lib/pq"
 
 	dbConn "github.com/budhip/go-postgre-clean-arch/db"
+	mWare "github.com/budhip/go-postgre-clean-arch/middleware"
 )
 
 func init() {
@@ -49,6 +50,8 @@ func main() {
 	fmt.Println("Successfully connected!")
 
 	e := echo.New()
+	customMware := mWare.InitMiddleware()
+	e.Use(customMware.CheckAuthHeader)
 
 	e.GET("/ping", func(c echo.Context) error {
 		result := map[string]interface{}{

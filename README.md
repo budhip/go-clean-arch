@@ -8,3 +8,9 @@ Rule of Clean Architecture by Uncle Bob
  * Independent of any external agency. In fact your business rules simply don’t know anything at all about the outside world.
 
 More at https://8thlight.com/blog/uncle-bob/2012/08/13/the-clean-architecture.html
+
+This project has 4 Domain layer :
+ * **Models Layer**: This layer will store any Object’s Struct and its method.
+ * **Repository Layer**: This layer will store any Database handler. Querying, or Creating/ Inserting into any database will stored here.
+ * **Usecase Layer**: This layer will act as the business process handler. Any process will handled here. This layer will decide, which repository layer will use. And have responsibility to provide data to serve into delivery. Process the data doing calculation or anything will done here.
+ * **Delivery Layer**: This layer will act as the presenter. Decide how the data will presented. Could be as REST API, or HTML File, or gRPC whatever the delivery type.

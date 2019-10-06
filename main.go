@@ -4,9 +4,15 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
 	"github.com/spf13/viper"
+
+	_ "github.com/lib/pq"
+
+	dbConn "github.com/budhip/go-postgre-clean-arch/db"
 )
 
 func init() {
@@ -22,6 +28,25 @@ func init() {
 }
 
 func main() {
+	var stageEnv string
+
+	err := godotenv.Load()
+	if err != nil {
+		// if stage not local
+		fmt.Println("loading from os")
+	}
+
+	stageEnv = os.Getenv("GO_ENV")
+
+	// connect to db
+	db, errConn := dbConn.ConnectToDB(stageEnv)
+	if errConn != nil {
+		panic(errConn)
+	}
+
+	defer db.Close()
+
+	fmt.Println("Successfully connected!")
 
 	e := echo.New()
 

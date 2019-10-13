@@ -1,5 +1,7 @@
 # go-postgre-clean-arch
 
+<u>This is an example of trying to implement clean architecture</u>
+
 Rule of Clean Architecture by Uncle Bob
  * Independent of Frameworks. The architecture does not depend on the existence of some library of feature laden software. This allows you to use such frameworks as tools, rather than having to cram your system into their limited constraints.
  * Testable. The business rules can be tested without the UI, Database, Web Server, or any other external element.

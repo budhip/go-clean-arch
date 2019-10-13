@@ -14,6 +14,10 @@ import (
 
 	dbConn "github.com/budhip/go-postgre-clean-arch/db"
 	mWare "github.com/budhip/go-postgre-clean-arch/middleware"
+
+	_userHttpDeliver "github.com/budhip/go-postgre-clean-arch/user/delivery/http"
+	_userRepo "github.com/budhip/go-postgre-clean-arch/user/repository"
+	_userUcase "github.com/budhip/go-postgre-clean-arch/user/usecase"
 )
 
 func init() {
@@ -59,6 +63,15 @@ func main() {
 		}
 		return c.JSON(http.StatusOK, result)
 	})
+
+	// grouping repo layer
+	userRepository := _userRepo.NewPostgreUserRepository(db)
+
+	// grouping use case layer
+	userUCase := _userUcase.NewUserUsecase(userRepository)
+
+	// http deliver layer
+	_userHttpDeliver.NewUserHandler(e, userUCase)
 
 	log.Fatal(e.Start(viper.GetString("server.address")))
 }

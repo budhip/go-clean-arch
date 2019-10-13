@@ -1,6 +1,6 @@
 # go-postgre-clean-arch
 
-<u>This is an example of trying to implement clean architecture</u>
+_This is an example of trying to implement clean architecture_
 
 Rule of Clean Architecture by Uncle Bob
  * Independent of Frameworks. The architecture does not depend on the existence of some library of feature laden software. This allows you to use such frameworks as tools, rather than having to cram your system into their limited constraints.
